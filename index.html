@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Physics Faculty Exam — 5000 MCQs for NET, GATE, UPHESC, SET</title>
+<meta name="description" content="5000 MCQs for CSIR-NET, GATE, UPHESC, HPSC, MPPSC, RPSC, SET Physics exam preparation. 10 subjects, formula sheets, practice tests.">
+<meta name="keywords" content="physics MCQ, CSIR NET physics, GATE physics, UPHESC physics, SET physics, assistant professor physics, physics question bank, physics faculty exam">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.7}
+.ctn{max-width:800px;margin:0 auto;padding:0 16px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#312e81,#3730a3,#4338ca);color:#fff;padding:48px 16px;text-align:center}
+.hero h1{font-size:2em;font-weight:800;margin-bottom:8px}
+.hero .sub{font-size:1em;opacity:.85;margin-bottom:24px}
+.hero .exams{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:28px}
+.hero .exam-tag{background:rgba(255,255,255,.15);padding:4px 14px;border-radius:20px;font-size:.8em;font-weight:500}
+.hero .stats{display:flex;justify-content:center;gap:32px;margin-bottom:28px}
+.hero .st{text-align:center}.hero .st .n{font-size:2em;font-weight:800}.hero .st .l{font-size:.7em;opacity:.7;text-transform:uppercase}
+.hero .cta{display:inline-block;background:#ef4444;color:#fff;padding:14px 36px;border-radius:12px;font-weight:700;font-size:1.05em;text-decoration:none;transition:.2s;box-shadow:0 4px 15px rgba(239,68,68,.4)}
+.hero .cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(239,68,68,.5)}
+
+/* Sections */
+.section{padding:48px 0}
+.section-title{text-align:center;font-size:1.5em;font-weight:700;color:#312e81;margin-bottom:8px}
+.section-sub{text-align:center;color:#64748b;font-size:.9em;margin-bottom:32px}
+
+/* Subject grid */
+.subj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.subj-card{background:#fff;border-radius:14px;padding:18px 12px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.subj-card .sicon{width:44px;height:44px;border-radius:12px;background:#312e81;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2em;margin:0 auto 8px}
+.subj-card .sname{font-size:.8em;font-weight:600;margin-bottom:2px}
+.subj-card .scnt{font-size:.65em;color:#94a3b8}
+
+/* Features */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.feat{background:#fff;border-radius:14px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.feat .ficon{font-size:1.8em;margin-bottom:8px}
+.feat .fname{font-size:.95em;font-weight:600;margin-bottom:4px}
+.feat .fdesc{font-size:.8em;color:#64748b}
+
+/* Sample question */
+.sample-q{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06);max-width:500px;margin:0 auto}
+.sample-q .qn{font-size:.75em;color:#312e81;font-weight:700;margin-bottom:8px}
+.sample-q .qt{font-size:.95em;margin-bottom:16px}
+.sample-q .opt{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:2px solid #e5e7eb;margin-bottom:8px;font-size:.88em}
+.sample-q .opt .ol{width:28px;height:28px;border-radius:8px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8em;color:#64748b;flex-shrink:0}
+.sample-q .opt.correct{border-color:#10b981;background:#ecfdf5}
+.sample-q .opt.correct .ol{background:#10b981;color:#fff}
+
+/* Pricing */
+.pricing{display:flex;gap:16px;max-width:500px;margin:0 auto;flex-wrap:wrap}
+.price-card{flex:1;min-width:200px;border-radius:16px;padding:24px;text-align:center}
+.price-card.single{background:#fff;border:2px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.price-card.bundle{background:linear-gradient(135deg,#312e81,#4338ca);color:#fff;position:relative;box-shadow:0 4px 20px rgba(49,46,129,.3)}
+.price-card .ptag{font-size:.75em;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.price-card.bundle .ptag{color:rgba(255,255,255,.7)}
+.price-card .pprice{font-size:2em;font-weight:800;color:#312e81;margin:4px 0}
+.price-card.bundle .pprice{color:#fff}
+.price-card .pdesc{font-size:.8em;color:#64748b}
+.price-card.bundle .pdesc{color:rgba(255,255,255,.8)}
+.price-card .badge{position:absolute;top:-10px;right:-5px;background:#ef4444;color:#fff;padding:3px 10px;border-radius:10px;font-size:.7em;font-weight:700}
+.price-card .old{text-decoration:line-through;opacity:.5;font-size:.85em}
+
+/* Coverage */
+.coverage{background:#312e81;color:#fff;padding:48px 16px;text-align:center;margin:48px 0}
+.coverage h2{font-size:1.4em;margin-bottom:8px}
+.coverage p{opacity:.8;font-size:.9em;margin-bottom:20px}
+.coverage .big{font-size:3em;font-weight:800;margin:16px 0}
+.exam-list{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px}
+.exam-list span{background:rgba(255,255,255,.12);padding:6px 16px;border-radius:20px;font-size:.82em}
+
+/* Download */
+.download{text-align:center;padding:48px 16px}
+.download .dl-btn{display:inline-block;background:#312e81;color:#fff;padding:16px 40px;border-radius:14px;font-weight:700;font-size:1.1em;text-decoration:none;transition:.2s;box-shadow:0 4px 15px rgba(49,46,129,.3)}
+.download .dl-btn:hover{transform:translateY(-2px)}
+.download p{color:#94a3b8;font-size:.82em;margin-top:10px}
+
+/* Footer */
+.footer{text-align:center;padding:32px 16px;border-top:1px solid #e5e7eb;color:#94a3b8;font-size:.75em}
+.footer a{color:#312e81}
+
+@media(max-width:500px){
+  .hero h1{font-size:1.5em}
+  .feat-grid{grid-template-columns:1fr}
+  .pricing{flex-direction:column}
+  .hero .stats{gap:20px}
+  .hero .st .n{font-size:1.5em}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>Physics Faculty Exam</h1>
+<div class="sub">The ultimate MCQ bank for physics competitive exams</div>
+<div class="exams">
+<span class="exam-tag">CSIR-NET</span>
+<span class="exam-tag">GATE</span>
+<span class="exam-tag">UPHESC</span>
+<span class="exam-tag">HPSC</span>
+<span class="exam-tag">MPPSC</span>
+<span class="exam-tag">RPSC</span>
+<span class="exam-tag">SET</span>
+<span class="exam-tag">IIT-JAM</span>
+</div>
+<div class="stats">
+<div class="st"><div class="n">5000</div><div class="l">Questions</div></div>
+<div class="st"><div class="n">10</div><div class="l">Subjects</div></div>
+<div class="st"><div class="n">10</div><div class="l">Formula Sheets</div></div>
+</div>
+<a class="cta" href="#download">Download App</a>
+</div>
+
+<!-- Subjects -->
+<div class="section">
+<div class="ctn">
+<div class="section-title">10 Subjects Covered</div>
+<div class="section-sub">500 MCQs + Formula Sheet per subject</div>
+<div class="subj-grid">
+<div class="subj-card"><div class="sicon">&#9881;</div><div class="sname">Classical Mechanics</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#9889;</div><div class="sname">EM Theory</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#9883;</div><div class="sname">Quantum Mechanics</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#128293;</div><div class="sname">Thermo & StatMech</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&infin;</div><div class="sname">Math Physics</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#128142;</div><div class="sname">Condensed Matter</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#9762;</div><div class="sname">Nuclear & Particle</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#9883;</div><div class="sname">Atomic & Molecular</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#128268;</div><div class="sname">Electronics</div><div class="scnt">500 Q</div></div>
+<div class="subj-card"><div class="sicon">&#11088;</div><div class="sname">Special Topics</div><div class="scnt">500 Q</div></div>
+</div>
+</div>
+</div>
+
+<!-- Features -->
+<div class="section" style="background:#f1f5f9">
+<div class="ctn">
+<div class="section-title">Why This App?</div>
+<div class="section-sub">Built by physics researchers for serious exam aspirants</div>
+<div class="feat-grid">
+<div class="feat"><div class="ficon">&#128209;</div><div class="fname">Formula Sheets</div><div class="fdesc">Complete formula reference for each subject with LaTeX-rendered equations</div></div>
+<div class="feat"><div class="ficon">&#10004;</div><div class="fname">Detailed Explanations</div><div class="fdesc">Every question has a clear explanation of the correct answer</div></div>
+<div class="feat"><div class="ficon">&#128274;</div><div class="fname">Anti-Piracy Protected</div><div class="fdesc">Screenshot blocking, copy protection — your investment stays safe</div></div>
+<div class="feat"><div class="ficon">&#128246;</div><div class="fname">Offline Access</div><div class="fdesc">Download once, practice anywhere — no internet needed</div></div>
+<div class="feat"><div class="ficon">&#127919;</div><div class="fname">Exam-Pattern MCQs</div><div class="fdesc">Questions match actual UPHESC, NET, GATE exam patterns</div></div>
+<div class="feat"><div class="ficon">&#11088;</div><div class="fname">Bookmark & Track</div><div class="fdesc">Save important questions and track your progress per subject</div></div>
+</div>
+</div>
+</div>
+
+<!-- Sample Question -->
+<div class="section">
+<div class="ctn">
+<div class="section-title">Try a Sample Question</div>
+<div class="section-sub">From our Classical Mechanics bank</div>
+<div class="sample-q">
+<div class="qn">QUESTION</div>
+<div class="qt">The moment of inertia of a uniform solid sphere of mass $M$ and radius $R$ about a diameter is:</div>
+<div class="opt correct"><span class="ol">A</span>$\frac{2}{5}MR^2$</div>
+<div class="opt"><span class="ol">B</span>$\frac{2}{3}MR^2$</div>
+<div class="opt"><span class="ol">C</span>$\frac{1}{2}MR^2$</div>
+<div class="opt"><span class="ol">D</span>$\frac{3}{5}MR^2$</div>
+</div>
+</div>
+</div>
+
+<!-- Coverage proof -->
+<div class="coverage">
+<div class="ctn">
+<h2>Verified Against Real Exams</h2>
+<p>We compared our question bank against UPHES 2018 actual paper</p>
+<div class="big">100%</div>
+<p>All 60 physics questions from the actual exam are covered by our bank</p>
+<div class="exam-list">
+<span>CSIR-NET</span><span>GATE</span><span>UPHESC</span><span>HPSC</span><span>MPPSC</span><span>RPSC</span><span>BPSC</span><span>PPSC</span><span>KSET</span><span>MHSET</span><span>IIT-JAM</span><span>JEST</span>
+</div>
+</div>
+</div>
+
+<!-- Pricing -->
+<div class="section">
+<div class="ctn">
+<div class="section-title">Simple Pricing</div>
+<div class="section-sub">One-time payment, lifetime access</div>
+<div class="pricing">
+<div class="price-card single">
+<div class="ptag">Per Subject</div>
+<div class="pprice">&#8377;1,000</div>
+<div class="pdesc">500 MCQs + Formula Sheet</div>
+<div class="pdesc">Choose any subject</div>
+</div>
+<div class="price-card bundle">
+<div class="badge">50% OFF</div>
+<div class="ptag">All 10 Subjects</div>
+<div class="pprice">&#8377;5,000</div>
+<div class="old">&#8377;10,000</div>
+<div class="pdesc">5000 MCQs + 10 Formula Sheets</div>
+<div class="pdesc">Best value — lifetime access</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Download -->
+<div class="download" id="download">
+<div class="section-title">Download Now</div>
+<div class="section-sub">Available on Android</div>
+<br>
+<a class="dl-btn" href="#">&#9658; Download from Play Store</a>
+<p>Coming soon to Play Store. Contact for early access.</p>
+</div>
+
+<div class="footer">
+<p>&copy; 2026 Physics Faculty Exam &bull; <a href="privacy.html">Privacy Policy</a></p>
+<p>For CSIR-NET, GATE, UPHESC, HPSC, MPPSC, RPSC, SET, IIT-JAM Physics preparation</p>
+</div>
+
+</body>
+</html>
