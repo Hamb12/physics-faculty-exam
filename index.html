@@ -107,6 +107,9 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;c
 .sample-q .exp{margin-top:12px;padding:12px;background:#f1f5f9;border-radius:10px;font-size:.85em;display:none}
 .sample-q .exp.vis{display:block}
 .sample-q .exp strong{color:#312e81}
+.fbtn{padding:5px 12px;border-radius:16px;border:1px solid #d1d5db;background:#fff;cursor:pointer;font-size:.75em;font-weight:500;color:#6b7280;transition:.15s}
+.fbtn:hover{border-color:#312e81;color:#312e81}
+.fbtn.active{background:#312e81;color:#fff;border-color:#312e81}
 
 @media(max-width:500px){
   .hero h1{font-size:1.5em}
@@ -146,16 +149,16 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;c
 <div class="section-title">10 Subjects Covered</div>
 <div class="section-sub">500 MCQs + Formula Sheet per subject</div>
 <div class="subj-grid">
-<div class="subj-card"><div class="sicon">&#9881;</div><div class="sname">Classical Mechanics</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#9889;</div><div class="sname">EM Theory</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#9883;</div><div class="sname">Quantum Mechanics</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#128293;</div><div class="sname">Thermo & StatMech</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&infin;</div><div class="sname">Math Physics</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#128142;</div><div class="sname">Condensed Matter</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#9762;</div><div class="sname">Nuclear & Particle</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#9883;</div><div class="sname">Atomic & Molecular</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#128268;</div><div class="sname">Electronics</div><div class="scnt">500 Q</div></div>
-<div class="subj-card"><div class="sicon">&#11088;</div><div class="sname">Special Topics</div><div class="scnt">500 Q</div></div>
+<div class="subj-card" onclick="filterSubj('CM')" style="cursor:pointer"><div class="sicon">&#9881;</div><div class="sname">Classical Mechanics</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('EM')" style="cursor:pointer"><div class="sicon">&#9889;</div><div class="sname">EM Theory</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('QM')" style="cursor:pointer"><div class="sicon">&#9883;</div><div class="sname">Quantum Mechanics</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('Thermo')" style="cursor:pointer"><div class="sicon">&#128293;</div><div class="sname">Thermo & StatMech</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('Math')" style="cursor:pointer"><div class="sicon">&infin;</div><div class="sname">Math Physics</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('CondMat')" style="cursor:pointer"><div class="sicon">&#128142;</div><div class="sname">Condensed Matter</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('NucPart')" style="cursor:pointer"><div class="sicon">&#9762;</div><div class="sname">Nuclear & Particle</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('Atom')" style="cursor:pointer"><div class="sicon">&#9883;</div><div class="sname">Atomic & Molecular</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('Elec')" style="cursor:pointer"><div class="sicon">&#128268;</div><div class="sname">Electronics</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
+<div class="subj-card" onclick="filterSubj('Special')" style="cursor:pointer"><div class="sicon">&#11088;</div><div class="sname">Special Topics</div><div class="scnt">500 Q &bull; Tap to preview</div></div>
 </div>
 </div>
 </div>
@@ -181,6 +184,19 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;c
 <div class="ctn">
 <div class="section-title">Try Sample Questions</div>
 <div class="section-sub">30 sample questions from all 10 subjects — tap to answer</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:16px;max-width:500px;margin-left:auto;margin-right:auto" id="filterBtns">
+<button class="fbtn active" onclick="filterSubj('all')">All (30)</button>
+<button class="fbtn" onclick="filterSubj('CM')">CM</button>
+<button class="fbtn" onclick="filterSubj('EM')">EM</button>
+<button class="fbtn" onclick="filterSubj('QM')">QM</button>
+<button class="fbtn" onclick="filterSubj('Thermo')">Thermo</button>
+<button class="fbtn" onclick="filterSubj('Math')">Math</button>
+<button class="fbtn" onclick="filterSubj('CondMat')">CondMat</button>
+<button class="fbtn" onclick="filterSubj('NucPart')">Nuclear</button>
+<button class="fbtn" onclick="filterSubj('Atom')">Atomic</button>
+<button class="fbtn" onclick="filterSubj('Elec')">Elec</button>
+<button class="fbtn" onclick="filterSubj('Special')">Special</button>
+</div>
 <div id="allQuestions"></div>
 <p style="text-align:center;margin-top:20px;font-size:.9em;color:#64748b">These are just 30 out of <strong>5000</strong> questions.</p>
 <p style="text-align:center;margin-top:8px"><a href="#download" style="color:#312e81;font-weight:700;font-size:1em">Download the app for all 5000 &#8594;</a></p>
@@ -372,6 +388,34 @@ function pickQ(i,l){
   h+='<div class="exp vis"><strong>Answer:</strong> '+q.e+'</div>';
   el.innerHTML=h;
   if(window.renderMathInElement)renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});
+}
+
+function filterSubj(tag){
+  // Update active button
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});
+  if(tag==='all'){
+    document.querySelector('.fbtn').classList.add('active');
+  } else {
+    document.querySelectorAll('.fbtn').forEach(function(b){if(b.textContent.trim()===tag||b.textContent.trim()===tag.replace('CondMat','CondMat').replace('NucPart','Nuclear').replace('Atom','Atomic').replace('Elec','Elec').replace('Thermo','Thermo').replace('Math','Math').replace('Special','Special'))b.classList.add('active')});
+  }
+
+  // Show/hide questions
+  var cards=document.querySelectorAll('#allQuestions .sample-q');
+  cards.forEach(function(card,i){
+    var qText=SQ[i].t;
+    if(tag==='all'){
+      card.style.display='';
+    } else {
+      var match=qText.indexOf('['+tag+']')>-1;
+      // Handle partial matches
+      if(!match && tag==='CM') match=qText.indexOf('[CM]')>-1;
+      if(!match && tag==='CondMat') match=qText.indexOf('[CondMat]')>-1;
+      card.style.display=match?'':'none';
+    }
+  });
+
+  // Scroll to questions section
+  document.getElementById('allQuestions').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 window.addEventListener('load',function(){setTimeout(renderAll,500)});
