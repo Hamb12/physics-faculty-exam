@@ -180,14 +180,10 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;c
 <div class="section">
 <div class="ctn">
 <div class="section-title">Try Sample Questions</div>
-<div class="section-sub">5 random questions from all 10 subjects — different every time</div>
-<div class="sample-q" id="sampleArea"></div>
-<div style="display:flex;justify-content:space-between;align-items:center;max-width:500px;margin:12px auto 0">
-<button onclick="sGo(-1)" id="sPrev" style="padding:10px 20px;border-radius:10px;border:none;background:#e5e7eb;cursor:pointer;font-weight:600" disabled>&#10094; Prev</button>
-<span id="sCtr" style="font-weight:600;color:#94a3b8">1 / 5</span>
-<button onclick="sGo(1)" id="sNext" style="padding:10px 20px;border-radius:10px;border:none;background:#312e81;color:#fff;cursor:pointer;font-weight:600">Next &#10095;</button>
-</div>
-<p style="text-align:center;margin-top:16px;font-size:.82em;color:#94a3b8">Want all 5000 questions? <a href="#download" style="color:#312e81;font-weight:600">Download the app</a></p>
+<div class="section-sub">30 sample questions from all 10 subjects — tap to answer</div>
+<div id="allQuestions"></div>
+<p style="text-align:center;margin-top:20px;font-size:.9em;color:#64748b">These are just 30 out of <strong>5000</strong> questions.</p>
+<p style="text-align:center;margin-top:8px"><a href="#download" style="color:#312e81;font-weight:700;font-size:1em">Download the app for all 5000 &#8594;</a></p>
 </div>
 </div>
 
@@ -337,40 +333,48 @@ var SQ=[
 {t:'[Special] Debye length in a plasma:',o:{a:'$\\sqrt{\\frac{\\epsilon_0 k_BT}{ne^2}}$',b:'$\\sqrt{\\frac{ne^2}{\\epsilon_0 k_BT}}$',c:'$\\frac{k_BT}{ne}$',d:'$\\frac{ne}{\\epsilon_0}$'},a:'a',e:'$\\lambda_D = \\sqrt{\\epsilon_0 k_BT/ne^2}$, screening length in plasma.'}
 ];
 
-var picked=[],sIdx=0,sAns={};
+var answered={};
 
-function initQuiz(){
-  var all=SQ.slice();
-  for(var i=all.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=all[i];all[i]=all[j];all[j]=t}
-  picked=all.slice(0,5);sIdx=0;sAns={};renderS();
-}
-
-function renderS(){
-  var q=picked[sIdx],ans=sAns[sIdx],area=document.getElementById('sampleArea');
-  var h='<div class="qn">QUESTION '+(sIdx+1)+' OF 5</div>';
-  h+='<div class="qt">'+q.t+'</div>';
-  ['a','b','c','d'].forEach(function(l){
-    if(!q.o[l])return;
-    var c='opt';
-    if(ans){c+=' answered';if(ans.s===l&&ans.ok)c+=' cor';else if(ans.s===l)c+=' wrg';if(l===q.a&&ans.s!==l)c+=' shc'}
-    h+='<div class="'+c+'" onclick="pickS(\''+l+'\')"><span class="ol">'+l.toUpperCase()+'</span>'+q.o[l]+'</div>';
+function renderAll(){
+  var area=document.getElementById('allQuestions');
+  var h='';
+  SQ.forEach(function(q,i){
+    var ans=answered[i];
+    h+='<div class="sample-q" style="margin-bottom:12px" id="sq'+i+'">';
+    h+='<div class="qn">Q'+(i+1)+' / 30</div>';
+    h+='<div class="qt">'+q.t+'</div>';
+    ['a','b','c','d'].forEach(function(l){
+      if(!q.o[l])return;
+      var c='opt';
+      if(ans){c+=' answered';if(ans.s===l&&ans.ok)c+=' cor';else if(ans.s===l)c+=' wrg';if(l===q.a&&ans.s!==l)c+=' shc'}
+      h+='<div class="'+c+'" onclick="pickQ('+i+',\''+l+'\')"><span class="ol">'+l.toUpperCase()+'</span>'+q.o[l]+'</div>';
+    });
+    h+='<div class="exp'+(ans?' vis':'')+'"><strong>Answer:</strong> '+q.e+'</div>';
+    h+='</div>';
   });
-  h+='<div class="exp'+(ans?' vis':'')+'"><strong>Answer:</strong> '+q.e+'</div>';
   area.innerHTML=h;
-  document.getElementById('sCtr').textContent=(sIdx+1)+' / 5';
-  document.getElementById('sPrev').disabled=sIdx===0;
-  document.getElementById('sNext').innerHTML=sIdx===4?'Try Again':'Next &#10095;';
   if(window.renderMathInElement)renderMathInElement(area,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});
 }
 
-function pickS(l){if(sAns[sIdx])return;sAns[sIdx]={s:l,ok:l===picked[sIdx].a};renderS()}
-
-function sGo(d){
-  if(d===1&&sIdx===4){initQuiz();return}
-  sIdx=Math.max(0,Math.min(4,sIdx+d));renderS();
+function pickQ(i,l){
+  if(answered[i])return;
+  answered[i]={s:l,ok:l===SQ[i].a};
+  // Re-render just this question
+  var q=SQ[i],ans=answered[i],el=document.getElementById('sq'+i);
+  var h='<div class="qn">Q'+(i+1)+' / 30</div>';
+  h+='<div class="qt">'+q.t+'</div>';
+  ['a','b','c','d'].forEach(function(ll){
+    if(!q.o[ll])return;
+    var c='opt answered';
+    if(ans.s===ll&&ans.ok)c+=' cor';else if(ans.s===ll)c+=' wrg';if(ll===q.a&&ans.s!==ll)c+=' shc';
+    h+='<div class="'+c+'"><span class="ol">'+ll.toUpperCase()+'</span>'+q.o[ll]+'</div>';
+  });
+  h+='<div class="exp vis"><strong>Answer:</strong> '+q.e+'</div>';
+  el.innerHTML=h;
+  if(window.renderMathInElement)renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});
 }
 
-window.addEventListener('load',function(){setTimeout(initQuiz,500)});
+window.addEventListener('load',function(){setTimeout(renderAll,500)});
 </script>
 </body>
 </html>
