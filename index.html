@@ -85,6 +85,29 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;c
 .footer{text-align:center;padding:32px 16px;border-top:1px solid #e5e7eb;color:#94a3b8;font-size:.75em}
 .footer a{color:#312e81}
 
+/* Formula sections */
+.formula-sec{background:#fff;border-radius:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.formula-sec summary{padding:14px 16px;font-weight:600;cursor:pointer;font-size:.92em;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.formula-sec summary::after{content:'›';font-size:1.2em;color:#94a3b8;transition:transform .2s}
+.formula-sec[open] summary::after{transform:rotate(90deg)}
+.formula-body{padding:4px 16px 14px;font-size:.88em;line-height:2}
+.formula-sec.locked summary{opacity:.5}
+.formula-sec.locked .formula-body{filter:blur(5px);pointer-events:none;user-select:none}
+
+/* Interactive quiz styles */
+.sample-q .opt{cursor:pointer;transition:.15s}
+.sample-q .opt:hover:not(.answered){border-color:#312e81;background:#f0f0ff}
+.sample-q .opt.cor{border-color:#10b981;background:#ecfdf5}
+.sample-q .opt.cor .ol{background:#10b981;color:#fff}
+.sample-q .opt.wrg{border-color:#ef4444;background:#fef2f2}
+.sample-q .opt.wrg .ol{background:#ef4444;color:#fff}
+.sample-q .opt.shc{border-color:#10b981;background:#ecfdf5}
+.sample-q .opt.shc .ol{background:#10b981;color:#fff}
+.sample-q .opt.answered{cursor:default;opacity:.85}
+.sample-q .exp{margin-top:12px;padding:12px;background:#f1f5f9;border-radius:10px;font-size:.85em;display:none}
+.sample-q .exp.vis{display:block}
+.sample-q .exp strong{color:#312e81}
+
 @media(max-width:500px){
   .hero h1{font-size:1.5em}
   .feat-grid{grid-template-columns:1fr}
@@ -153,18 +176,68 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;c
 </div>
 </div>
 
-<!-- Sample Question -->
+<!-- Interactive Sample Quiz -->
 <div class="section">
 <div class="ctn">
-<div class="section-title">Try a Sample Question</div>
-<div class="section-sub">From our Classical Mechanics bank</div>
-<div class="sample-q">
-<div class="qn">QUESTION</div>
-<div class="qt">The moment of inertia of a uniform solid sphere of mass $M$ and radius $R$ about a diameter is:</div>
-<div class="opt correct"><span class="ol">A</span>$\frac{2}{5}MR^2$</div>
-<div class="opt"><span class="ol">B</span>$\frac{2}{3}MR^2$</div>
-<div class="opt"><span class="ol">C</span>$\frac{1}{2}MR^2$</div>
-<div class="opt"><span class="ol">D</span>$\frac{3}{5}MR^2$</div>
+<div class="section-title">Try Sample Questions</div>
+<div class="section-sub">5 random questions — different every time you reload</div>
+<div class="sample-q" id="sampleArea"></div>
+<div style="display:flex;justify-content:space-between;align-items:center;max-width:500px;margin:12px auto 0">
+<button onclick="sGo(-1)" id="sPrev" style="padding:10px 20px;border-radius:10px;border:none;background:#e5e7eb;cursor:pointer;font-weight:600" disabled>&#10094; Prev</button>
+<span id="sCtr" style="font-weight:600;color:#94a3b8">1 / 5</span>
+<button onclick="sGo(1)" id="sNext" style="padding:10px 20px;border-radius:10px;border:none;background:#312e81;color:#fff;cursor:pointer;font-weight:600">Next &#10095;</button>
+</div>
+<p style="text-align:center;margin-top:16px;font-size:.82em;color:#94a3b8">Want all 5000 questions? <a href="#download" style="color:#312e81;font-weight:600">Download the app</a></p>
+</div>
+</div>
+
+<!-- Formula Sheet Preview -->
+<div class="section" style="background:#f1f5f9">
+<div class="ctn">
+<div class="section-title">Formula Sheet Preview</div>
+<div class="section-sub">Each subject comes with a complete formula reference</div>
+<div style="max-width:500px;margin:0 auto">
+
+<details class="formula-sec" open>
+<summary>Newton's Laws & Equations of Motion</summary>
+<div class="formula-body">
+$\vec{F} = m\vec{a}$ — Newton's second law<br>
+$\vec{p} = m\vec{v}$, &nbsp; $\vec{F} = \frac{d\vec{p}}{dt}$<br>
+$W = \int \vec{F}\cdot d\vec{r}$, &nbsp; $T = \frac{1}{2}mv^2$<br>
+$W_{net} = \Delta T$ — Work-energy theorem<br>
+$\vec{F} = -\nabla V$ — Conservative force<br>
+$E = T + V = \text{const}$ — Energy conservation<br>
+$\vec{r}_{cm} = \frac{\sum m_i \vec{r}_i}{\sum m_i}$ — Centre of mass
+</div>
+</details>
+
+<details class="formula-sec">
+<summary>Lagrangian Mechanics</summary>
+<div class="formula-body">
+$L = T - V$ — Lagrangian<br>
+$\frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} = 0$ — Euler-Lagrange<br>
+$p_i = \frac{\partial L}{\partial \dot{q}_i}$ — Canonical momentum<br>
+Cyclic $q_i \Rightarrow p_i = \text{const}$<br>
+$\delta S = 0$ — Hamilton's principle
+</div>
+</details>
+
+<details class="formula-sec locked">
+<summary>&#128274; Hamiltonian Mechanics</summary>
+<div class="formula-body">$H = \sum p_i\dot{q}_i - L$, Hamilton's equations, Poisson brackets, canonical transformations...</div>
+</details>
+
+<details class="formula-sec locked">
+<summary>&#128274; Central Forces & Kepler</summary>
+<div class="formula-body">Reduced mass, orbit equation, Kepler's laws, vis-viva, scattering...</div>
+</details>
+
+<details class="formula-sec locked">
+<summary>&#128274; + 5 more sections in the app</summary>
+<div class="formula-body">Rigid Body, Oscillations, Special Relativity — all with complete formulas</div>
+</details>
+
+<p style="text-align:center;margin-top:16px"><a href="#download" style="color:#312e81;font-weight:600;font-size:.9em">Get all 10 formula sheets in the app &#8594;</a></p>
 </div>
 </div>
 </div>
@@ -220,5 +293,59 @@ body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#f8fafc;c
 <p>For CSIR-NET, GATE, UPHESC, HPSC, MPPSC, RPSC, SET, IIT-JAM Physics preparation</p>
 </div>
 
+<script>
+var SQ=[
+{t:'The moment of inertia of a solid sphere of mass $M$ and radius $R$ about a diameter is:',o:{a:'$\\frac{2}{5}MR^2$',b:'$\\frac{2}{3}MR^2$',c:'$\\frac{1}{2}MR^2$',d:'$\\frac{3}{5}MR^2$'},a:'a',e:'Standard result: $I = \\frac{2}{5}MR^2$.'},
+{t:'If the Lagrangian does not depend explicitly on time, which quantity is conserved?',o:{a:'Linear momentum',b:'Angular momentum',c:'Energy (Hamiltonian)',d:'Generalized force'},a:'c',e:'Time translation symmetry $\\Rightarrow$ energy conservation.'},
+{t:'The escape velocity from Earth surface is:',o:{a:'$\\sqrt{gR}$',b:'$\\sqrt{2gR}$',c:'$\\sqrt{3gR}$',d:'$2\\sqrt{gR}$'},a:'b',e:'$v_e = \\sqrt{2gR}$.'},
+{t:'Hamilton\'s equations are:',o:{a:'$\\dot{q}=\\frac{\\partial H}{\\partial p}$, $\\dot{p}=-\\frac{\\partial H}{\\partial q}$',b:'$\\dot{q}=-\\frac{\\partial H}{\\partial p}$',c:'$\\dot{q}=\\frac{\\partial H}{\\partial q}$',d:'$\\dot{q}=\\frac{\\partial L}{\\partial p}$'},a:'a',e:'Canonical equations of Hamilton.'},
+{t:'Simple pendulum period for small oscillations:',o:{a:'$2\\pi\\sqrt{l/g}$',b:'$2\\pi\\sqrt{g/l}$',c:'$\\pi\\sqrt{l/g}$',d:'$2\\pi l/g$'},a:'a',e:'$T = 2\\pi\\sqrt{l/g}$.'},
+{t:'DOF of rigid body freely moving in 3D:',o:{a:'3',b:'5',c:'6',d:'9'},a:'c',e:'3 translational + 3 rotational = 6.'},
+{t:'Poisson bracket $\\{q_i, p_j\\}$ equals:',o:{a:'$0$',b:'$\\delta_{ij}$',c:'$-\\delta_{ij}$',d:'$i\\hbar\\delta_{ij}$'},a:'b',e:'$\\{q_i, p_j\\} = \\delta_{ij}$.'},
+{t:'Parallel axis theorem:',o:{a:'$I=I_{cm}+Md$',b:'$I=I_{cm}+Md^2$',c:'$I=I_{cm}-Md^2$',d:'$I=I_{cm}\\cdot Md^2$'},a:'b',e:'$I = I_{cm} + Md^2$.'},
+{t:'Noether\'s theorem connects:',o:{a:'Force and acceleration',b:'Symmetry and conservation laws',c:'Energy and mass',d:'Entropy and temperature'},a:'b',e:'Every continuous symmetry gives a conserved quantity.'},
+{t:'Reduced mass of $m_1$ and $m_2$:',o:{a:'$m_1+m_2$',b:'$m_1 m_2$',c:'$\\frac{m_1 m_2}{m_1+m_2}$',d:'$\\frac{m_1+m_2}{m_1 m_2}$'},a:'c',e:'$\\mu = m_1 m_2/(m_1+m_2)$.'},
+{t:'Relativistic energy-momentum:',o:{a:'$E=pc$',b:'$E^2=p^2c^2+m^2c^4$',c:'$E=mc^2+p^2/2m$',d:'$E^2=p^2+m^2$'},a:'b',e:'$E^2 = (pc)^2 + (mc^2)^2$.'},
+{t:'Kepler\'s second law states:',o:{a:'Orbits are elliptical',b:'Equal areas in equal times',c:'$T^2 \\propto a^3$',d:'Energy conserved'},a:'b',e:'Law of areas — angular momentum conservation.'},
+{t:'Coriolis force:',o:{a:'$-m\\vec{\\omega}\\times\\vec{v}$',b:'$-2m\\vec{\\omega}\\times\\vec{v}$',c:'$m\\vec{\\omega}\\times\\vec{v}$',d:'$2m\\vec{\\omega}\\times\\vec{v}$'},a:'b',e:'$\\vec{F}_{Cor} = -2m\\vec{\\omega}\\times\\vec{v}$.'},
+{t:'Gyroscopic precession rate:',o:{a:'$Mgl/I\\omega$',b:'$I\\omega/Mgl$',c:'$Mgl\\cdot I\\omega$',d:'$\\sqrt{Mgl/I}$'},a:'a',e:'$\\Omega_p = Mgl/(I_3\\omega_3)$.'},
+{t:'Bertrand\'s theorem: closed orbits only for:',o:{a:'$V\\propto r^2$ and $V\\propto -1/r$',b:'Any central force',c:'$V\\propto r$',d:'$V\\propto 1/r^2$'},a:'a',e:'Harmonic and gravity/Coulomb only.'}
+];
+
+var picked=[],sIdx=0,sAns={};
+
+function initQuiz(){
+  var all=SQ.slice();
+  for(var i=all.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=all[i];all[i]=all[j];all[j]=t}
+  picked=all.slice(0,5);sIdx=0;sAns={};renderS();
+}
+
+function renderS(){
+  var q=picked[sIdx],ans=sAns[sIdx],area=document.getElementById('sampleArea');
+  var h='<div class="qn">QUESTION '+(sIdx+1)+' OF 5</div>';
+  h+='<div class="qt">'+q.t+'</div>';
+  ['a','b','c','d'].forEach(function(l){
+    if(!q.o[l])return;
+    var c='opt';
+    if(ans){c+=' answered';if(ans.s===l&&ans.ok)c+=' cor';else if(ans.s===l)c+=' wrg';if(l===q.a&&ans.s!==l)c+=' shc'}
+    h+='<div class="'+c+'" onclick="pickS(\''+l+'\')"><span class="ol">'+l.toUpperCase()+'</span>'+q.o[l]+'</div>';
+  });
+  h+='<div class="exp'+(ans?' vis':'')+'"><strong>Answer:</strong> '+q.e+'</div>';
+  area.innerHTML=h;
+  document.getElementById('sCtr').textContent=(sIdx+1)+' / 5';
+  document.getElementById('sPrev').disabled=sIdx===0;
+  document.getElementById('sNext').innerHTML=sIdx===4?'Try Again':'Next &#10095;';
+  if(window.renderMathInElement)renderMathInElement(area,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});
+}
+
+function pickS(l){if(sAns[sIdx])return;sAns[sIdx]={s:l,ok:l===picked[sIdx].a};renderS()}
+
+function sGo(d){
+  if(d===1&&sIdx===4){initQuiz();return}
+  sIdx=Math.max(0,Math.min(4,sIdx+d));renderS();
+}
+
+window.addEventListener('load',function(){setTimeout(initQuiz,500)});
+</script>
 </body>
 </html>
