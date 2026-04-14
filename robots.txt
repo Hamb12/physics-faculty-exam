@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hamb12.github.io/physics-faculty-exam/sitemap.xml
